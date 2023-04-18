@@ -4,17 +4,19 @@ import { Button, Col, Container, Form, Row } from "react-bootstrap";
 //si passa un array vuoto così il codice funziona anche se non viene inserito nessun value 
 const SearchBar = ({ books = [], setBooks }) => {
 
-  //searchTerm variabile stato valore attuale 
-  //setSearchTerm funzione che permette di aggiornare valore di searchTerm
+  setBooks = []
+  // searchTerm: variabile di stato per il valore attuale della ricerca
+  // setSearchTerm: funzione per aggiornare il valore di searchTerm
   const [searchTerm, setSearchTerm] = useState("");
   console.log(searchTerm);
 
-  //funzione eseguita quando clicco ricerca
+  // funzione eseguita al clic del bottone "Cerca"
   const handleSearch = () => {
-    const filteredBooks = books.filter((book) => //filtro array di books in base a lavore di searchTerms (minuscolo)
+    // si filtra l'array dei libri in base al valore di searchTerm (in minuscolo)
+    const filteredBooks = books.filter((book) =>
       book.title.toLowerCase().includes(searchTerm.toLowerCase())
     );
-    console.log(filteredBooks);
+    // si aggiornano i libri visualizzati sulla pagina
     setBooks(filteredBooks);
   };
 
@@ -35,6 +37,7 @@ const SearchBar = ({ books = [], setBooks }) => {
         </Col>
       </Row>
       <Row>
+        {/* si mappa l'array dei libri filtrati e si visualizzano nella pagina */}
         {books.map((book) => (
           <Col key={book.id} md={3}>
             <h4>{book.title}</h4>
