@@ -6,7 +6,7 @@ const SearchBar = ({books, setBooks}) => {
     const [searchTerm, setSearchTerm] = useState("")
     console.log(searchTerm)
 
-    const filteredBooks = {}
+    //const filteredBooks = {}
 
 
     return (
