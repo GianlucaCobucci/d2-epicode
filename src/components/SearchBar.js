@@ -6,7 +6,7 @@ const SearchBar = ({books, setBooks}) => {
     const [searchTerm, setSearchTerm] = useState("")
     console.log(searchTerm)
 
-    //const filteredBooks = {}
+    const filteredBooks = {}
 
 
     return (
@@ -22,7 +22,7 @@ const SearchBar = ({books, setBooks}) => {
                 aria-label="Search"
               />
               <Button>
-                Search button
+                Cerca
               </Button>
             </Form>
           </Col>

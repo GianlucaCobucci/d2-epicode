@@ -13,8 +13,8 @@ const LatestReleasePage = () => {
            <>
            <SearchBar/>
            <MyBadge
-                str="Ciao"
-                color="primary"
+                str="MyBadge"
+                color="secondary"
            />
                 <Container fluid>
                     <Row xs={1} sm={2} md={3} lg={4} className="g-3">

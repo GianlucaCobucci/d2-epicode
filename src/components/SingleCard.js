@@ -13,7 +13,11 @@ const SingleCard = ({ asin, title, author, category, price, img }) => {
     return (
 
         <Card onClick={toggleSelected} className={`${selected ? "border border-danger shadow" : null}`}> {/* non riesco a modificare altezza, la voglio fissa */}
-            <Card.Img className="object-fit-cover w-100 book-card" src={img} alt={title} />
+            <Card.Img 
+                className="object-fit-cover w-100 book-card" 
+                src={img} 
+                alt={title} 
+            />
             <Card.Body key={asin}>
                 <Card.Title className="text-truncate">{title}</Card.Title>
                 <Card.Subtitle className="mb-2">{author}</Card.Subtitle>
