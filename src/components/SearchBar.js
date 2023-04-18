@@ -1,23 +1,29 @@
-import React, { useState } from "react";
-import { Button, Col, Container, Form, Row } from "react-bootstrap";
+import React, { useState } from "react"; // importazione delle librerie React e useState
+import { Button, Col, Container, Form, Row } from "react-bootstrap"; // importazione delle componenti Bootstrap necessarie
 
-//si passa un array vuoto così il codice funziona anche se non viene inserito nessun value 
+//Definizione della funzione SearchBar
+//Il componente accetta come argomenti un array di libri e una funzione 
+//per aggiornare la lista dei libri visualizzati
 const SearchBar = ({ books = [], setBooks }) => {
 
-  setBooks = []
-  // searchTerm: variabile di stato per il valore attuale della ricerca
-  // setSearchTerm: funzione per aggiornare il valore di searchTerm
+  //Dichiarazione della variabile di stato searchTerm inizializzata a una stringa vuota
+  //Questa variabile conterrà il valore attuale della ricerca
   const [searchTerm, setSearchTerm] = useState("");
-  console.log(searchTerm);
+  console.log(searchTerm); 
 
-  // funzione eseguita al clic del bottone "Cerca"
+  // Definizione della funzione  che viene eseguita al clic del bottone "Cerca"
   const handleSearch = () => {
-    // si filtra l'array dei libri in base al valore di searchTerm (in minuscolo)
+
+    //Si filtra l'array dei libri in base al valore di searchTerm (in minuscolo)
     const filteredBooks = books.filter((book) =>
       book.title.toLowerCase().includes(searchTerm.toLowerCase())
     );
-    // si aggiornano i libri visualizzati sulla pagina
+
+    //Si aggiornano i libri visualizzati sulla pagina
     setBooks(filteredBooks);
+
+    /* C'E' UN ERRORE: dice che setBooks non è una funzione */
+    
   };
 
   return (
@@ -26,7 +32,7 @@ const SearchBar = ({ books = [], setBooks }) => {
         <Col sm={12}>
           <Form className="d-flex">
             <Form.Control
-              onChange={(e) => setSearchTerm(e.target.value)}
+              onChange={(element) => setSearchTerm(element.target.value)}
               type="search"
               placeholder="Search"
               className="me-2"
@@ -37,7 +43,6 @@ const SearchBar = ({ books = [], setBooks }) => {
         </Col>
       </Row>
       <Row>
-        {/* si mappa l'array dei libri filtrati e si visualizzano nella pagina */}
         {books.map((book) => (
           <Col key={book.id} md={3}>
             <h4>{book.title}</h4>
@@ -49,4 +54,5 @@ const SearchBar = ({ books = [], setBooks }) => {
   );
 };
 
-export default SearchBar;
+export default SearchBar; 
+
