@@ -4,7 +4,7 @@ import { Button, Col, Container, Form, Row } from "react-bootstrap"; // importaz
 //Definizione della funzione SearchBar
 //Il componente accetta come argomenti un array di libri e una funzione 
 //per aggiornare la lista dei libri visualizzati
-const SearchBar = ({ books = [], setBooks }) => {
+const SearchBar = ({ books, setRenderBooks }) => { /* Search bar è figlio di latest, quindi eredita getbooks dal padre */
 
   //Dichiarazione della variabile di stato searchTerm inizializzata a una stringa vuota
   //Questa variabile conterrà il valore attuale della ricerca
@@ -15,15 +15,16 @@ const SearchBar = ({ books = [], setBooks }) => {
   const handleSearch = () => {
 
     //Si filtra l'array dei libri in base al valore di searchTerm (in minuscolo)
-    const filteredBooks = books.filter((book) =>
-      book.title.toLowerCase().includes(searchTerm.toLowerCase())
-    );
+    if (searchTerm !== "") {
+      const filteredBooks = books.filter((book) =>
+        book.title.toLowerCase().includes(searchTerm.toLowerCase())
+      );
+      //Si aggiornano i libri visualizzati sulla pagina
+      setRenderBooks(filteredBooks);
+    } else {
+      setRenderBooks(books);
+    }
 
-    //Si aggiornano i libri visualizzati sulla pagina
-    setBooks(filteredBooks);
-
-    /* C'E' UN ERRORE: dice che setBooks non è una funzione */
-    
   };
 
   return (
@@ -32,23 +33,18 @@ const SearchBar = ({ books = [], setBooks }) => {
         <Col sm={12}>
           <Form className="d-flex">
             <Form.Control
-              onChange={(element) => setSearchTerm(element.target.value)}
+              onChange={(e) => [
+                setSearchTerm(e.target.value),
+                handleSearch()
+              ]}
               type="search"
               placeholder="Search"
               className="me-2"
               aria-label="Search"
             />
-            <Button onClick={handleSearch}>Cerca</Button>
+            <Button type="submit">Cerca</Button>
           </Form>
         </Col>
-      </Row>
-      <Row>
-        {books.map((book) => (
-          <Col key={book.id} md={3}>
-            <h4>{book.title}</h4>
-            <p>{book.author}</p>
-          </Col>
-        ))}
       </Row>
     </Container>
   );
