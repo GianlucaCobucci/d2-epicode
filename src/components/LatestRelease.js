@@ -10,12 +10,52 @@ import FadeLoader from 'react-spinners/FadeLoader';
 const LatestReleasePage = () => {
 
     const [loading, setLoading] = useState(false) // definisce uno stato loading inizializzato a false
+    /* 
+    La variabile di stato loading è inizializzata a false perché all'inizio 
+    della pagina non c'è alcun caricamento in corso. In questo modo, 
+    quando la pagina viene caricata, non viene visualizzato alcun indicatore 
+    di caricamento. Tuttavia, quando viene avviato un caricamento (ad esempio quando
+    viene effettuata una richiesta API per ottenere i dati dei libri), 
+    il valore di loading viene impostato su true per indicare all'utente 
+    che il caricamento è in corso.
+    */
+    
     const [error, setError] = useState(null) // definisce uno stato error inizializzato a null
+    /* 
+    La variabile di stato error viene inizializzata a null perché all'inizio non 
+    ci sono errori da segnalare. In caso di errore durante la richiesta API 
+    o durante l'elaborazione dei dati ricevuti, il valore di error viene 
+    aggiornato con una stringa contenente un messaggio di errore specifico. 
+    In questo modo, è possibile gestire gli errori in modo adeguato e informare 
+    l'utente su eventuali problemi durante il caricamento dei dati.
+    */
 
     const [books, setBooks] = useState([]) // definisce uno stato books inizializzato con un array vuoto
+    console.log(books); 
+    /* 
+    La variabile di stato books viene inizializzata con un array vuoto 
+    perché inizialmente non ci sono libri da visualizzare. 
+    Durante il caricamento dei dati, i libri vengono ottenuti 
+    tramite una richiesta API e quindi vengono assegnati alla variabile di
+    stato books utilizzando la funzione setBooks(). In questo modo, quando 
+    i dati vengono caricati correttamente, la variabile di stato books 
+    contiene un array di libri e questo può essere utilizzato per la visualizzazione.
+    */
+    
     const [renderBooks, setRenderBooks] = useState([]) // definisce uno stato renderBooks inizializzato con un array vuoto
+    /*  
+    La variabile di stato renderBooks viene inizializzata con un array vuoto 
+    perché rappresenta l'array di libri da visualizzare nella pagina. 
+    Inizialmente, questo array è vuoto poiché i dati dei libri devono ancora 
+    essere caricati tramite una richiesta API. Dopo il caricamento dei dati, 
+    la variabile di stato books viene aggiornata con un array di libri e 
+    successivamente viene utilizzata per aggiornare anche la variabile di 
+    stato renderBooks tramite la funzione setRenderBooks(). 
+    In questo modo, gli utenti possono effettuare ricerche sulla pagina 
+    e visualizzare solo una porzione specifica di libri, senza dover 
+    effettuare ulteriori richieste API.
+    */
 
-    console.log(books); // stampa i libri nella console
 
     const getBooks = async () => { // definisce la funzione asincrona getBooks
         setLoading(true) // imposta loading a true per indicare l'inizio del caricamento
