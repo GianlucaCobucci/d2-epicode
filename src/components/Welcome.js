@@ -1,7 +1,5 @@
 import Container from 'react-bootstrap/Container';
 
-/* non riesco ad importare il Jumbotron da nessuna libreria*/
-
 const Welcome = () => {
 
   return (
