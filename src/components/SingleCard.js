@@ -5,9 +5,8 @@ import CommentsModal from './CommentsModal';
 const SingleCard = ({ asin, title, author, category, price, img }) => {
 
     const [selected, setSelected] = useState(false) // definisce una variabile di stato selected inizializzata a false
-    //console.log(selected)
     const [isCommentModalOpen, setIsCommentModalOpen] = useState(false) // definisce una variabile di stato isCommentModalOpen inizializzata a false
-
+    
     const toggleSelected = () => setSelected(!selected) // definisce una funzione toggleSelected che inverte il valore della variabile selected
     const toggleModal = () => setIsCommentModalOpen(!isCommentModalOpen) // definisce una funzione toggleModal che inverte il valore della variabile isCommentModalOpen
 

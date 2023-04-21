@@ -1,5 +1,4 @@
 import { Container, Row } from 'react-bootstrap';
-/* import jsonData from '../data/d2-json/fantasy.json';*/
 import "../Layout/BookCard.css"
 import MyBadge from './MyBadge';
 import SingleCard from './SingleCard';
@@ -19,7 +18,7 @@ const LatestReleasePage = () => {
     il valore di loading viene impostato su true per indicare all'utente 
     che il caricamento è in corso.
     */
-    
+
     const [error, setError] = useState(null) // definisce uno stato error inizializzato a null
     /* 
     La variabile di stato error viene inizializzata a null perché all'inizio non 
@@ -41,7 +40,7 @@ const LatestReleasePage = () => {
     i dati vengono caricati correttamente, la variabile di stato books 
     contiene un array di libri e questo può essere utilizzato per la visualizzazione.
     */
-    
+
     const [renderBooks, setRenderBooks] = useState([]) // definisce uno stato renderBooks inizializzato con un array vuoto
     /*  
     La variabile di stato renderBooks viene inizializzata con un array vuoto 
@@ -78,18 +77,14 @@ const LatestReleasePage = () => {
 
     return (
         <>
-            <Container>
+            <Container className="my-5">
                 {error && <h1 className='text-danger'>{error}</h1>} {/* visualizza il messaggio di errore se presente */}
                 {loading && !error && <FadeLoader color="#36d7b7" />} {/* visualizza l'indicatore di caricamento se loading è true e non ci sono errori */}
-                {!loading && !error && // visualizza il resto del contenuto se loading è false e non ci sono errori
+                {!loading && !error && (
                     <div>
                         <h4 className="text-center mb-5">Ultimi Arrivi</h4>
-
-                        <SearchBar books={books} setBooks={setBooks} setRenderBooks={setRenderBooks}/> {/* passa i libri e le funzioni di aggiornamento come proprietà alla componente SearchBar */}
-                        <MyBadge
-                            str="MyBadge"
-                            color="secondary"
-                        />
+                        <SearchBar books={books} setBooks={setBooks} setRenderBooks={setRenderBooks} /> {/* passa i libri e le funzioni di aggiornamento come proprietà alla componente SearchBar */}
+                        <MyBadge str="MyBadge" color="secondary" />
                         <Container fluid>
                             <Row xs={1} sm={2} md={3} lg={4} className="g-3">
                                 {renderBooks && renderBooks.map((book) => ( /* controllo se sesiste books (quinsi se è true) */
@@ -105,8 +100,8 @@ const LatestReleasePage = () => {
                                 ))}
                             </Row>
                         </Container>
-
-                    </div>}
+                    </div>
+                )}
             </Container>
         </>
     );

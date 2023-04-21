@@ -4,14 +4,14 @@ import { Button, Col, Container, Form, Row } from "react-bootstrap"; // importaz
 //Definizione della funzione SearchBar
 //Il componente accetta come argomenti un array di libri e una funzione 
 //per aggiornare la lista dei libri visualizzati
-const SearchBar = ({ books, setRenderBooks }) => { /* Search bar è figlio di latest, quindi eredita getbooks dal padre */
+const SearchBar = ({ books, setRenderBooks }) => { /* Search bar è figlio di LatestRelease, quindi eredita getbooks dal padre */
 
   //Dichiarazione della variabile di stato searchTerm inizializzata a una stringa vuota
   //Questa variabile conterrà il valore attuale della ricerca
   const [searchTerm, setSearchTerm] = useState("");
-  console.log(searchTerm); 
+  //console.log(searchTerm); 
 
-  // Definizione della funzione  che viene eseguita al clic del bottone "Cerca"
+  // Definizione della funzione che viene eseguita al clic del bottone "Cerca"
   const handleSearch = () => {
 
     //Si filtra l'array dei libri in base al valore di searchTerm (in minuscolo)

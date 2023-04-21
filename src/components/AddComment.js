@@ -1,17 +1,20 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
+import { Spinner } from 'react-bootstrap';
+
 
 const AddComment = ({ asin }) => {
 
     const [comment, setComment] = useState('')
     const [rate, setRate] = useState('1')
+    const [loading, setLoading] = useState(false);
 
     const handleCommentSubmit = async (event) => {
         event.preventDefault()
 
+        setLoading(true);
+
         try {
             console.log(comment)
-            //console.log(rate)
-            //console.log(asin)
 
             const response = await fetch(`https://striveschool-api.herokuapp.com/api/comments/`, {
                 method: 'POST',
@@ -26,14 +29,18 @@ const AddComment = ({ asin }) => {
                 }
             })
             if (response.ok) {
-                alert('Comment added!')
+                alert('Commento aggiunto!')
+                setComment('');
+                setRate('1');
             } else {
-                console.log('Error:', response)
+                console.log('Errore else')
                 alert('Errore else')
             }
         } catch (error) {
             console.log(error)
             alert('Errore catch')
+        } finally {
+            setLoading(false);
         }
     }
 
@@ -69,6 +76,13 @@ const AddComment = ({ asin }) => {
                 <button type="submit" className="btn btn-primary">
                     Invia
                 </button>
+                {loading && (
+                    <div className="d-flex justify-content-center align-items-center">
+                        <Spinner animation="border" role="status">
+                            <span className="visually-hidden">Caricamento in corso...</span>
+                        </Spinner>
+                    </div>
+                )}
             </form>
         </div>
     )
