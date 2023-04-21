@@ -31,7 +31,7 @@ const LatestReleasePage = () => {
     */
 
     const [books, setBooks] = useState([]) // definisce uno stato books inizializzato con un array vuoto
-    console.log(books); 
+    //console.log(books); 
     /* 
     La variabile di stato books viene inizializzata con un array vuoto 
     perché inizialmente non ci sono libri da visualizzare. 

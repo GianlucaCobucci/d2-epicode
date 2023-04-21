@@ -24,10 +24,10 @@ const SingleCard = ({ asin, title, author, category, price, img }) => {
                     <Card.Subtitle className="mb-2">{author}</Card.Subtitle>
                     <Card.Text className="mb-1">{category.charAt(0).toUpperCase() + category.slice(1)}</Card.Text>
                     <Badge bg="primary" className="mb-2">€{price}</Badge>
-                    <Button onClick={toggleModal}>Commenti</Button> {/* definisce un pulsante per aprire il modale dei commenti */}
+                    <Button className="ms-5" onClick={toggleModal}>Commenti</Button> {/* definisce un pulsante per aprire il modale dei commenti */}
                 </Card.Body>
             </Card>
-            {isCommentModalOpen && <CommentsModal toggleModal={toggleModal}/>} {/* visualizza il modale dei commenti solo se isCommentModalOpen è true */}
+            {isCommentModalOpen && <CommentsModal toggleModal={toggleModal} asin={asin}/>} {/* visualizza il modale dei commenti solo se isCommentModalOpen è true */}
         </>
 
     )
