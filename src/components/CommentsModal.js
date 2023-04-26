@@ -1,19 +1,22 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { Button, Modal, Spinner } from 'react-bootstrap';
 import CommentList from './CommentList';
 import AddComment from './AddComment';
-import useFetch from '../Hooks/useFetch';
 import '../Layout/CommentsModal.css';
+import {commentsLoading, commentsError, arrayOfComments} from '../states/commentsState'
+import { useDispatch, useSelector } from 'react-redux'; /* dispatch esegue azioni che sono in reducer, selector seleziona analiticamente lo stato che ci serve */
+import { getCommentsFromBook } from '../states/commentsState';
 
 const CommentsModal = ({ toggleModal, asin }) => { // definisce il componente CommentsModal con due proprietà: toggleModal e asin
-    const [error, setError] = useState(null); // definisce una variabile di stato per gli errori, inizialmente nulla
-    const { data: comments, loading } = useFetch(`https://striveschool-api.herokuapp.com/api/comments/${asin}`).catch((err) => setError(err.message)); ; // utilizza il custom hook useFetch per ottenere i dati delle recensioni, salvandoli nella variabile comments e lo stato del caricamento in loading
+   
+    const dispatch = useDispatch()
+    const loading = useSelector(commentsLoading)
+    const error = useSelector(commentsError)
+    const comments = useSelector(arrayOfComments)
 
-    useEffect(() => { // definisce un effetto che viene eseguito in caso di errori
-        if (error) { // se error è diverso da null, mostra l'errore nella console
-            console.log("C'è un errore da qualche parte: " + error);
-        }
-    }, [error]); // specifica le dipendenze per l'effetto
+    useEffect(()=> {
+        dispatch(getCommentsFromBook())
+    }, [dispatch])
 
     return (
         <div className="modal show comments-modal" style={{ display: 'block' }}> {/* definisce il layout della finestra modale */}
@@ -22,7 +25,6 @@ const CommentsModal = ({ toggleModal, asin }) => { // definisce il componente Co
                     {loading && ( //se loading è true, mostra uno spinner
                         <div className="d-flex justify-content-center align-items-center">
                             <Spinner animation="border" role="status">
-                                <span className="visually-hidden">Caricamento in corso...</span>
                             </Spinner>
                         </div>
                     )}

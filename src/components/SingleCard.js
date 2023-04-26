@@ -23,7 +23,7 @@ const SingleCard = ({ asin, title, author, category, price, img }) => {
                     <Card.Subtitle className="mb-2">{author}</Card.Subtitle>
                     <Card.Text className="mb-1">{category.charAt(0).toUpperCase() + category.slice(1)}</Card.Text>
                     <div className='d-flex'>
-                        <Badge bg="primary" className="mb-2">€{price}</Badge>
+                        <Badge bg="primary" className="mb-2 mt-2">€{price}</Badge>
                         <Button 
                             className="ms-4" 
                             onClick={toggleModal}>Commenti
